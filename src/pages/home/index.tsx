@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment ,useRef} from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
     AnnotationIcon,
@@ -21,7 +21,7 @@ const navigation = [
 const business=[
     {
         img:'https://cdn.discordapp.com/attachments/882986018280726578/883178197846470666/inch.png',
-        title:'Research and Analysis',
+        title:'Research and Analysis  ',
         text:'Defi, Web3.0, NFT, crosschain infrastructure, distributed storage, etc'
     },
     {
@@ -48,32 +48,32 @@ const portfolio =[
     img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"2",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"3",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"4",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"5",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"6",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
     {
-        number:"1",
+        number:"7",
         href:'',
         img:"https://www.ti-capital.co/uploads/images/20210712/1626096572305370.png",
     },
@@ -81,6 +81,85 @@ const portfolio =[
 ]
 
 export default function Home() {
+    let dot1=useRef(null)
+    let dot2=useRef(null)
+    let dot3=useRef(null)
+    let dot4=useRef(null)
+    let mobile=useRef(null)
+    const TapDot1=()=>{
+        // @ts-ignore
+        mobile.current.style.transform="translateX(-0%)"
+        dot1.current.style.background="yellow"
+        dot2.current.style.background=""
+        dot3.current.style.background=""
+        dot4.current.style.background=""
+        mobile.current.style.transition="0.5s"
+    }
+    const TapDot2=()=>{
+        mobile.current.style.transform="translateX(-20%)"
+        dot2.current.style.background="yellow"
+        dot1.current.style.background=""
+        dot3.current.style.background=""
+        dot4.current.style.background=""
+    }
+    const TapDot3=()=>{
+        mobile.current.style.transform="translateX(-45%)"
+        dot3.current.style.background="yellow"
+        dot1.current.style.background=""
+        dot2.current.style.background=""
+        dot4.current.style.background=""
+    }
+    const TapDot4=()=>{
+        mobile.current.style.transform="translateX(-72%)"
+        dot4.current.style.background="yellow"
+        dot1.current.style.background=""
+        dot2.current.style.background=""
+        dot3.current.style.background=""
+    }
+    const left=()=>{
+        if(dot1.current.style.background=="yellow"){
+            TapDot4()
+        }else{
+            if(dot2.current.style.background=="yellow"){
+                TapDot1()
+            }else{
+                if(dot3.current.style.background=="yellow"){
+                    TapDot2()
+                }else{
+                    if(dot4.current.style.background=="yellow"){
+                        TapDot3()
+                    }
+
+                }
+            }
+        }
+
+    }
+    const right=()=> {
+        if (dot1.current.style.background == "yellow") {
+            TapDot2()
+        } else {
+            if (dot2.current.style.background == "yellow") {
+                TapDot3()
+            } else {
+                if (dot3.current.style.background == "yellow") {
+                    TapDot4()
+                } else {
+                    if (dot4.current.style.background == "yellow") {
+                        TapDot1()
+                    }
+
+                }
+            }
+
+
+    }
+
+
+    }
+
+
+
     return (
         <div className="min-h-screen ">
             <header>
@@ -211,23 +290,23 @@ export default function Home() {
                                 <div>
                                     Business
                                 </div>
-                                <div className="flex justify-between  text-lg md:text-2xl mr-5">
-                                    <div className="px-2 md:px-5 md:py-2 border-2 border-blue-600">
-                                        <i className="fa fa-angle-left" aria-hidden="true"></i>
-                                    </div>
-                                    <div className="px-2 md:px-5 md:py-2 border-2 border-l-0 border-blue-600">
-                                        <i className="fa fa-angle-right" aria-hidden="true"></i>
-                                    </div>
-                                    <div className="px-2 md:px-5 md:py-2 border-2 border-l-0 border-blue-600 ">
-                                        <span>1</span>
-                                        /
-                                        <span>4</span>
-                                    </div>
-                                </div>
+
                             </div>
-                                <div className="flex overflow-x-auto h-80 mt-5 md:mt-40 overflow-hidden justify-between ">
+
+                                <div>
+                                    <div className="flex justify-end  text-lg md:text-2xl mr-5">
+                                        <div onClick={left} className="px-2 md:px-5 md:py-2 border-2 border-blue-600">
+                                            <i className="fa fa-angle-left" aria-hidden="true"></i>
+                                        </div>
+                                        <div onClick={right} className="px-2 md:px-5 md:py-2 border-2 border-l-0 border-blue-600">
+                                            <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                        </div>
+
+                                    </div>
+                                <div className="flex overflow-hidden    h-80 mt-5 md:mt-20 relative  justify-between ">
+                                    <div ref={mobile} className="flex  justify-between  transform ">
                                     {business.map((item)=>(
-                                        <div key={item.title} className="flex max-h-96 min-w-full  bg-yellow-200 rounded-lg p-5  md:min-w-max  mr-14  transform duration-700 hover:shadow-2xl hover:translate-x-3 hover:bg-indigo-500">
+                                        <div key={item.title}  className="flex  w-11/12  bg-yellow-200 rounded-lg p-5  max-w-xl md:min-w-max mr-6 transform duration-700 hover:shadow-2xl hover:translate-x-3 hover:bg-indigo-500">
                                             <div className="w-24  rounded-full overflow-hidden ">
                                                 <img src={item.img} alt=""/>
                                             </div>
@@ -237,6 +316,17 @@ export default function Home() {
                                             </div>
                                         </div>
                                         ))}
+
+                                    </div>
+                                </div>
+
+
+                                    <div className="flex justify-center relative mt-4">
+                                    <div onClick={TapDot1} ref={dot1} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
+                                    <div onClick={TapDot2} ref={dot2} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
+                                    <div onClick={TapDot3}  ref={dot3} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
+                                    <div onClick={TapDot4}  ref={dot4} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
