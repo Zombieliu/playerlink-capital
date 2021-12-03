@@ -1,4 +1,4 @@
-import { Fragment ,useRef} from 'react'
+import { Fragment ,useRef,useEffect} from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
     AnnotationIcon,
@@ -93,17 +93,17 @@ export default function Home() {
         dot2.current.style.background=""
         dot3.current.style.background=""
         dot4.current.style.background=""
-        mobile.current.style.transition="0.5s"
+
     }
     const TapDot2=()=>{
-        mobile.current.style.transform="translateX(-20%)"
+        mobile.current.style.transform="translateX(-21%)"
         dot2.current.style.background="yellow"
         dot1.current.style.background=""
         dot3.current.style.background=""
         dot4.current.style.background=""
     }
     const TapDot3=()=>{
-        mobile.current.style.transform="translateX(-45%)"
+        mobile.current.style.transform="translateX(-50%)"
         dot3.current.style.background="yellow"
         dot1.current.style.background=""
         dot2.current.style.background=""
@@ -157,7 +157,11 @@ export default function Home() {
 
 
     }
+    useEffect(()=>{
+        dot1.current.style.background="yellow"
+        mobile.current.style.transition="0.5s"
 
+    },[])
 
 
     return (
@@ -294,7 +298,7 @@ export default function Home() {
                             </div>
 
                                 <div>
-                                    <div className="flex justify-end  text-lg md:text-2xl mr-5">
+                                    <div className="hidden xl:flex justify-end  text-lg md:text-2xl mr-5">
                                         <div onClick={left} className="px-2 md:px-5 md:py-2 border-2 border-blue-600">
                                             <i className="fa fa-angle-left" aria-hidden="true"></i>
                                         </div>
@@ -303,10 +307,10 @@ export default function Home() {
                                         </div>
 
                                     </div>
-                                <div className="flex overflow-hidden    h-80 mt-5 md:mt-20 relative  justify-between ">
+                                <div className="flex  overflow-x-auto xl:overflow-hidden  h-80 mt-5 md:mt-20 relative  justify-between ">
                                     <div ref={mobile} className="flex  justify-between  transform ">
                                     {business.map((item)=>(
-                                        <div key={item.title}  className="flex  w-11/12  bg-yellow-200 rounded-lg p-5  max-w-xl md:min-w-max mr-6 transform duration-700 hover:shadow-2xl hover:translate-x-3 hover:bg-indigo-500">
+                                        <div key={item.title}  className="flex  w-11/12  bg-yellow-200 rounded-lg p-5  max-w-xl  md:min-w-max mr-6  transform duration-700 hover:shadow-2xl hover:translate-x-3 hover:bg-indigo-500">
                                             <div className="w-24  rounded-full overflow-hidden ">
                                                 <img src={item.img} alt=""/>
                                             </div>
@@ -321,32 +325,27 @@ export default function Home() {
                                 </div>
 
 
-                                    <div className="flex justify-center relative mt-4">
+
+                                    <div className=" justify-center relative mt-4 hidden xl:flex  ">
                                     <div onClick={TapDot1} ref={dot1} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
                                     <div onClick={TapDot2} ref={dot2} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
                                     <div onClick={TapDot3}  ref={dot3} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
                                     <div onClick={TapDot4}  ref={dot4} className="w-4 h-4 rounded-full bg-gray-200 mx-1 hover:bg-yellow-100"></div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     {/* THREE   */}
                         <div className="bg-white border-b-2">
                                 <div className="px-4 py-10 md:px-20 md:py-36 ">
-                                    <div className="px-2 flex justify-between text-3xl md:text-5xl">
+                                    <div className="px-2 mb-5 flex justify-between text-3xl md:text-5xl">
                                         <div>
                                             Portfolio
                                         </div>
-                                        <div className="  text-lg md:text-2xl mr-5 mb-3">
-                                            <div className="px-2 md:px-5 md:py-2 border-2 border-blue-600">
-                                                <i className="fa fa-angle-up " aria-hidden="true"></i>
-                                            </div>
-                                            <div className="px-2 md:px-5 md:py-2 border-2 border-t-0 border-blue-600">
-                                                <i className="fa fa-angle-down" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
+
                                     </div>
-                                    <div className="flex  grid grid-cols-2  md:grid-cols-5 gap-y-0 h-56 md:h-96 overflow-y-auto  overflow-hidden justify-between ">
+                                    <div className="flex  grid grid-cols-2  md:grid-cols-5 gap-y-0 h-60 md:h-96 overflow-y-auto  overflow-hidden justify-between ">
                                             {portfolio.map((item)=>(
                                                 <div key={item.number} className="border  ">
                                                     <a href={item.href}>
