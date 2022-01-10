@@ -6,7 +6,7 @@ const IndexPage: NextPage = () => {
 
     <div>
       <Head>
-        <title>david</title>
+        <title>PlayerLink-Capital</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
